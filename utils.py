@@ -1,3 +1,5 @@
+import sys
+
 def show_credits(): 
     print(r""" 
 
@@ -7,3 +9,7 @@ def show_credits():
                     by wiz & bogoceman                                            
 
     """)
+
+def exit_program():
+    print("Bye.")
+    sys.exit(0)
