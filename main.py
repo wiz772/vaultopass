@@ -1,4 +1,7 @@
 import utils
+import vault
+import settings
+import session
 
 def show_main_choice():
     print(r""" 
@@ -9,17 +12,15 @@ def show_main_choice():
 
 """)
 
-def add():
-    print("a")
-
 def handle_choice():
     choices = {
-        "1": add,
-        "2": add,
+        "1": vault.open_vault,
+        "2": settings.show_settings_menu,
         "3": utils.exit_program
     }
 
     while True:
+        show_main_choice()
         choice = input("> ")
 
         if choice in choices:
@@ -27,7 +28,6 @@ def handle_choice():
 
 def main(): 
     utils.show_credits()
-    show_main_choice()
     handle_choice()
 
 if __name__ == "__main__":
