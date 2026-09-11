@@ -1,7 +1,8 @@
-import utils
-import vault
-import settings
-import session
+import utils.utils as utils
+import vault.vault as vault
+import core.settings as settings
+import core.session as session
+import core.setup as setup
 
 def show_main_choice():
     print(r""" 
@@ -31,4 +32,5 @@ def main():
     handle_choice()
 
 if __name__ == "__main__":
+    setup.check_setup()
     main() 

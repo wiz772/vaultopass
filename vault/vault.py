@@ -1,4 +1,4 @@
-from session import Session
+from core.session import Session
 
 def open_vault(session):
     if not session.is_unlocked():
