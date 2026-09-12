@@ -13,7 +13,7 @@ def ask_settings():
 def create_config(path, settings):
     ...
 
-def create_vault(path, master_password):
+def create_vault(path, master_password, config):
     ...
 
 def setup():
