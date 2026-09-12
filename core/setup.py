@@ -1,4 +1,4 @@
-def setup_masterpassword():
+def ask_masterpassword():
     ...
 
 def setup_dialogue():
@@ -20,11 +20,11 @@ def setup():
     setup_dialogue()
 
     storage_path = ask_storage_path()
-    master_password = setup_masterpassword()
+    master_password = ask_masterpassword()
     settings = ask_settings()
 
-    create_config(storage_path, settings)
-    create_vault(storage_path, master_password)
+    config = create_config(storage_path, settings)
+    create_vault(storage_path, master_password, config)
 
 def config_exists():
     ...
