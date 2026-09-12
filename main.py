@@ -1,7 +1,6 @@
 import utils.utils as utils
 import vault.vault as vault
 import core.settings as settings
-import core.session as session
 import core.setup as setup
 
 def show_main_choice():
