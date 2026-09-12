@@ -1,5 +1,12 @@
+import json
+
 def ask_masterpassword():
-    ...
+    password = input
+    (r"""
+    IMPORTANT: KEEP THIS PASSWORD SAFE AND AWAY FROM YOUR COMPUTER
+    Enter the password to open your vault 
+    """)
+    return password
 
 def setup_dialogue():
     ...
@@ -11,7 +18,7 @@ def ask_settings():
     ...
 
 def create_config(path, settings):
-    ...
+    storage_path, timeout = settings
 
 def create_vault(path, master_password, config):
     ...
