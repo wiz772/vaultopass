@@ -3,7 +3,7 @@ class Session:
         self.unlocked = False
         self.timeout = timeout
 
-    def unlock(self, password):
+    def unlock(self):
         self.unlocked = True
         return True
     
