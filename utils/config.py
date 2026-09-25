@@ -8,6 +8,12 @@ VAULT_PATH = os.path.join(CONFIG_DIR, "vault.enc")
 
 DEFAULT_TIMEOUT = 30
 
+def load_config():
+    if not config_exists: return False
+
+    with open(CONFIG_PATH, "r", encoding="utf-8") as file:
+        config = json.load(file)
+    return config
 
 def write_config(config):
     os.makedirs(CONFIG_DIR, exist_ok=True)
