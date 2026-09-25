@@ -124,7 +124,7 @@ def setup():
     master_password = ask_masterpassword()
     settings = ask_settings()
 
-    config = create_config(settings)
+    create_config(settings)
     create_vault(master_password)
 
 
