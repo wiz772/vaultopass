@@ -1,6 +1,6 @@
 import os
 from getpass import getpass
-import config
+from utils import config
 
 def setup_dialogue():
     print("""
