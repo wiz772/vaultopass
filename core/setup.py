@@ -1,10 +1,6 @@
 import os
 from getpass import getpass
-import json
-
-
-CONFIG_DIR = os.path.expanduser("~/.vaultopass")
-CONFIG_PATH = os.path.join(CONFIG_DIR, "config.json")
+import config
 
 def setup_dialogue():
     print("""
@@ -94,25 +90,6 @@ Default: {default_timeout} minutes
 
     return timeout
 
-def write_config(config):
-    os.makedirs(CONFIG_DIR, exist_ok=True)
-
-    with open(CONFIG_PATH, "w", encoding="utf-8") as file:
-        json.dump(config, file, indent=4)
-
-
-def create_config(settings):
-    timeout = settings
-
-    config = {
-        "version": 1,
-        "timeout": timeout
-    }
-
-    write_config(config)
-
-    return config
-
 
 def create_vault(master_password):
     ...
@@ -124,13 +101,9 @@ def setup():
     master_password = ask_masterpassword()
     settings = ask_settings()
 
-    create_config(settings)
+    config.create_config(settings)
     create_vault(master_password)
 
-
-def config_exists():
-    return os.path.isfile(CONFIG_PATH)
-
 def check_setup():
-    if not config_exists():
+    if not config.config_exists():
         setup()
