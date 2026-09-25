@@ -116,7 +116,7 @@ def create_config(settings):
     return config
 
 
-def create_vault(master_password, config):
+def create_vault(master_password):
     ...
 
 
@@ -127,7 +127,7 @@ def setup():
     settings = ask_settings()
 
     config = create_config(settings)
-    create_vault(master_password, config)
+    create_vault(master_password)
 
 
 def config_exists():
