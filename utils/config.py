@@ -15,6 +15,7 @@ def load_config():
         config = json.load(file)
     return config
 
+
 def write_config(config):
     os.makedirs(CONFIG_DIR, exist_ok=True)
 
