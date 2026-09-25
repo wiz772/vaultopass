@@ -1,6 +1,10 @@
 import os
 from getpass import getpass
+import json
 
+
+CONFIG_DIR = os.path.expanduser("~/.vaultopass")
+CONFIG_PATH = os.path.join(CONFIG_DIR, "config.json")
 
 def setup_dialogue():
     print("""
@@ -12,7 +16,6 @@ Vaultopass is being configured for the
 first time.
 
 You will now configure:
-- Vault storage location
 - Master password
 - Vault settings
 
@@ -25,35 +28,6 @@ It cannot be recovered if lost.
 """)
 
     input("Press Enter to continue...")
-
-
-def ask_storage_path():
-    default_path = os.path.expanduser("~/.vaultopass")
-
-    print("\n--- Vault Storage ---")
-    print("Where would you like to store your vault?")
-    print(f"Press Enter to use the default path:")
-    print(f"  {default_path}")
-
-    path = input("\nStorage path: ").strip()
-
-    if not path:
-        path = default_path
-
-    path = os.path.abspath(os.path.expanduser(path))
-
-    print(f"\nVault will be stored in:")
-    print(f"  {path}")
-
-    while True:
-        confirm = input("Is this correct? [Y/n]: ").strip().lower()
-        if confirm in ("", "y", "yes"):
-            break
-        if confirm in ("n", "no"):
-            return ask_storage_path()
-        print("Please enter Y or N.")
-
-    return path
 
 
 def ask_masterpassword():
@@ -123,14 +97,17 @@ Default: {default_timeout} minutes
     return timeout
 
 def write_config(config):
-    ...
+    os.makedirs(CONFIG_DIR, exist_ok=True)
 
-def create_config(storage_path, settings):
+    with open(CONFIG_PATH, "w", encoding="utf-8") as file:
+        json.dump(config, file, indent=4)
+
+
+def create_config(settings):
     timeout = settings
 
     config = {
         "version": 1,
-        "storage_path": storage_path,
         "timeout": timeout
     }
 
@@ -139,19 +116,18 @@ def create_config(storage_path, settings):
     return config
 
 
-def create_vault(path, master_password, config):
+def create_vault(master_password, config):
     ...
 
 
 def setup():
     setup_dialogue()
 
-    storage_path = ask_storage_path()
     master_password = ask_masterpassword()
     settings = ask_settings()
 
-    config = create_config(storage_path, settings)
-    create_vault(storage_path, master_password, config)
+    config = create_config(settings)
+    create_vault(master_password, config)
 
 
 def config_exists():
