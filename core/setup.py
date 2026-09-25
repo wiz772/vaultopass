@@ -72,9 +72,7 @@ Default: {default_timeout} minutes
 """)
 
     while True:
-        timeout_input = input(
-            f"Session timeout in minutes [{default_timeout}]: "
-        ).strip()
+        timeout_input = input(f"Session timeout in minutes [{default_timeout}]: ").strip()
 
         if not timeout_input:
             timeout = default_timeout
@@ -131,8 +129,7 @@ def setup():
 
 
 def config_exists():
-    return False
-
+    return os.path.isfile(CONFIG_PATH)
 
 def check_setup():
     if not config_exists():
