@@ -1,4 +1,4 @@
-from vault import vault
+from vault import vault_handler
 from cryptography.exceptions import InvalidTag
 
 class Session:
@@ -10,7 +10,7 @@ class Session:
 
     def unlock(self, password):
         try:
-            vault_data, encryption_key = vault.decrypt_vault(password)
+            vault_data, encryption_key = vault_handler.decrypt_vault(password)
 
             self.vault_data = vault_data
             self.encryption_key = encryption_key

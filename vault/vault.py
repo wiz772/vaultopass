@@ -1,57 +1,4 @@
 from utils import utils
-from utils import config
-from crypto import crypto
-import os
-import json
-
-def get_vault_meta_data():
-    config_dir = config.get_config_dir_path()
-    meta_path = os.path.join(config_dir, "vault_meta.json")
-
-    with open(meta_path, "r", encoding="utf-8") as file:
-        metadata = json.load(file)
-
-    return metadata
-
-def get_encrypted_vault():
-    config_dir = config.get_config_dir_path()
-    vault_path = os.path.join(config_dir, "vault.enc")
-
-    with open(vault_path, "rb") as file:
-        nonce = file.read(crypto.AES_GCM_NONCE_SIZE)  
-        encrypted_data = file.read() 
-
-    return encrypted_data, nonce
-
-
-def decrypt_vault(master_password):
-    metadata = get_vault_meta_data()
-    salt = bytes.fromhex(metadata["kdf"]["salt"])
-    encryption_key = crypto.derive_key(master_password, salt)
-
-    encrypted_data, nonce = get_encrypted_vault()
-    decrypted_data = crypto.decrypt(encrypted_data, encryption_key, nonce)
-
-    vault_data = json.loads(decrypted_data.decode("utf-8"))
-    return vault_data, encryption_key
-
-def encrypt_vault(vault_data, encryption_key):
-    plaintext = json.dumps(vault_data).encode("utf-8")
-    encrypted_data, nonce = crypto.encrypt(plaintext, encryption_key)
-
-    return encrypted_data, nonce
-
-def save_encrypted_vault(encrypted_data, nonce):
-    config_dir = config.get_config_dir_path()
-    vault_path = os.path.join(config_dir, "vault.enc")
-
-    tmp_vault_path = os.path.join(config_dir, "vault.enc.tmp")
-
-    with open(tmp_vault_path, "wb") as file:
-        file.write(nonce)
-        file.write(encrypted_data)
-
-    os.replace(tmp_vault_path, vault_path)
 
 def ask_password():
     password = input("Enter your master password: ")
@@ -62,7 +9,7 @@ def vault_loop(session):
     while session.is_unlocked():
         input("Vault is unlocked. Press Enter to lock the vault and exit...")
         close_vault(session)
-        
+
 def open_vault(session):
     if not session.is_unlocked():
 
