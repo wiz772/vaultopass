@@ -1,5 +1,6 @@
 import sys
 import ctypes
+import os
 
 def show_credits(): 
     print(r""" 
@@ -19,3 +20,5 @@ def exit_program():
 def setting_window_name(new_name):
     ctypes.windll.kernel32.SetConsoleTitleW(new_name)
 
+def clear_console():
+    os.system('cls' if os.name == 'nt' else 'clear')
