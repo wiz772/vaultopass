@@ -34,7 +34,7 @@ def decrypt_vault(master_password):
     decrypted_data = crypto.decrypt(encrypted_data, encryption_key, nonce)
 
     vault_data = json.loads(decrypted_data.decode("utf-8"))
-    return vault_data
+    return vault_data, encryption_key
 
 def encrypt_vault(vault_data, encryption_key):
     plaintext = json.dumps(vault_data).encode("utf-8")
@@ -54,9 +54,16 @@ def save_encrypted_vault(encrypted_data, nonce):
 
     os.replace(tmp_vault_path, vault_path)
 
+def ask_password():
+    password = input("Enter your master password: ")
+    return password
+
 def open_vault(session):
     if not session.is_unlocked():
-        if not session.unlock():
+
+        password = ask_password()
+
+        if not session.unlock(password):
             print("Failed to unlock your session. Your vault is still sealed.")
             return
 
