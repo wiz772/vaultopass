@@ -14,6 +14,11 @@ def show_main_choice():
 
 """)
 
+def main_menu_visuals():
+    utils.clear_console()
+    utils.setting_window_name("VaultoPASS - Menu")
+    utils.show_credits()
+
 def handle_choice(session):
     choices = {
         "1": lambda: vault.open_vault(session),
@@ -22,9 +27,9 @@ def handle_choice(session):
     }
 
     while True:
-        utils.setting_window_name("VaultoPASS - Menu")
-
+        main_menu_visuals()
         show_main_choice()
+
         choice = input("> ")
 
         if choice in choices:
@@ -37,7 +42,6 @@ def get_session():
     return current_session
 
 def start(current_session):
-    utils.show_credits()
     handle_choice(current_session)
 
 def main(): 
