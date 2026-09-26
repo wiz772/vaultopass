@@ -1,6 +1,7 @@
 import os
 from getpass import getpass
 from utils import config
+from vault import vault_creation
 
 def setup_dialogue():
     print("""
@@ -90,11 +91,6 @@ Default: {default_timeout} minutes
 
     return timeout
 
-
-def create_vault(master_password):
-    ...
-
-
 def setup():
     setup_dialogue()
 
@@ -102,7 +98,7 @@ def setup():
     settings = ask_settings()
 
     config.create_config(settings)
-    create_vault(master_password)
+    vault_creation.create_vault(master_password)
 
 def check_setup():
     if not config.config_exists():

@@ -28,7 +28,8 @@ def create_config(settings):
 
     config = {
         "version": 1,
-        "timeout": timeout
+        "timeout": timeout,
+        "vault_path": VAULT_PATH
     }
 
     write_config(config)
