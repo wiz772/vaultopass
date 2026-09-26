@@ -10,3 +10,7 @@ def open_vault(session):
     # session unlock, vault unsealed
     utils.setting_window_name("VaultoPASS - Vault")
     print("ok déverouillé.") 
+
+
+def update_vault(session, data):
+    ...
