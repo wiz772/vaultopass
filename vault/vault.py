@@ -1,4 +1,5 @@
 from core.session import Session
+import utils.utils as utils
 
 def open_vault(session):
     if not session.is_unlocked():
@@ -7,4 +8,5 @@ def open_vault(session):
             return
 
     # session unlock, vault unsealed
+    utils.setting_window_name("VaultoPASS - Vault")
     print("ok déverouillé.") 

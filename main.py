@@ -22,6 +22,7 @@ def handle_choice(session):
     }
 
     while True:
+        utils.setting_window_name("VaultoPASS - Menu")
         show_main_choice()
         choice = input("> ")
 
