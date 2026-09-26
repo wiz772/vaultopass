@@ -1,9 +1,9 @@
-import utils.utils as utils
-import vault.vault as vault
-import core.settings as settings
-import core.setup as setup
-import core.session as session
-import utils.config as config_handler
+from utils import utils
+from vault import vault
+from core import settings
+from core import setup
+from core import session
+from utils import config as config_handler
 
 def show_main_choice():
     print(r""" 
