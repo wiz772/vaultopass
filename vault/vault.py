@@ -42,6 +42,18 @@ def encrypt_vault(vault_data, encryption_key):
 
     return encrypted_data, nonce
 
+def save_encrypted_vault(encrypted_data, nonce):
+    config_dir = config.get_config_dir_path()
+    vault_path = os.path.join(config_dir, "vault.enc")
+
+    tmp_vault_path = os.path.join(config_dir, "vault.enc.tmp")
+
+    with open(tmp_vault_path, "wb") as file:
+        file.write(nonce)
+        file.write(encrypted_data)
+
+    os.replace(tmp_vault_path, vault_path)
+
 def open_vault(session):
     if not session.is_unlocked():
         if not session.unlock():
