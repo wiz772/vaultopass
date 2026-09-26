@@ -4,8 +4,11 @@ class Session:
         self.timeout = timeout
 
     def unlock(self):
-        self.unlocked = True
-        return True
+        passw = input("Enter your password: ")
+        if passw == "aaa":
+            self.unlocked = True
+            return True
+        return False
     
     def lock(self):
         self.unlocked = False

@@ -2,6 +2,8 @@ import utils.utils as utils
 import vault.vault as vault
 import core.settings as settings
 import core.setup as setup
+import core.session as session
+import utils.config as config_handler
 
 def show_main_choice():
     print(r""" 
@@ -12,9 +14,9 @@ def show_main_choice():
 
 """)
 
-def handle_choice():
+def handle_choice(session):
     choices = {
-        "1": vault.open_vault,
+        "1": lambda: vault.open_vault(session),
         "2": settings.show_settings_menu,
         "3": utils.exit_program
     }
@@ -27,8 +29,11 @@ def handle_choice():
             choices[choice]()
 
 def main(): 
+    config = config_handler.load_config()
+    current_session = session.Session(config["timeout"])
+
     utils.show_credits()
-    handle_choice()
+    handle_choice(current_session)
 
 if __name__ == "__main__":
     setup.check_setup()
