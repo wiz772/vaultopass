@@ -1,4 +1,3 @@
-from core import session
 from utils import utils
 from utils import config
 from crypto import crypto
@@ -58,6 +57,12 @@ def ask_password():
     password = input("Enter your master password: ")
     return password
 
+def vault_loop(session):
+    utils.clear_console()
+    while session.is_unlocked():
+        input("Vault is unlocked. Press Enter to lock the vault and exit...")
+        close_vault(session)
+        
 def open_vault(session):
     if not session.is_unlocked():
 
@@ -68,7 +73,10 @@ def open_vault(session):
             return
 
     utils.setting_window_name("VaultoPASS - Vault")
-    print("ok déverouillé.") 
+    vault_loop(session)
 
 def update_vault(session, data):
     ...
+
+def close_vault(session):
+    session.lock()
