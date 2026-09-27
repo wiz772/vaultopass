@@ -1,4 +1,3 @@
-import os
 from getpass import getpass
 from utils import config
 from vault import vault_creation
