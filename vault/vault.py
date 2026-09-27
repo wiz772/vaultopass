@@ -37,9 +37,9 @@ def vault_loop(session: Session):
 
     choices = {
             "1": lambda: vault_show_entries(session.vault_data),
-            "2": ...,
-            "3": ...,
-            "4": ...,
+            "2": utils.print_coming_soon,
+            "3": utils.print_coming_soon,
+            "4": utils.print_coming_soon,
             "5": lambda: close_vault(session)
     }
 

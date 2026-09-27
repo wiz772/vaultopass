@@ -25,3 +25,7 @@ def setting_window_name(new_name):
 
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
+
+def print_coming_soon():
+    print("\nThis feature is coming soon\n")
+    input("Press Enter to continue...")
