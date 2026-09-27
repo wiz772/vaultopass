@@ -1,4 +1,5 @@
 from utils import utils
+from core.session import Session
 
 def ask_password():
     password = input("Enter your master password: ")
@@ -31,7 +32,7 @@ def vault_show_entries(vault_data):
     for i, entry in enumerate(entries, start=1):
         print(f"{i}. {entry['name']} - {entry['username']}")
 
-def vault_loop(session):
+def vault_loop(session: Session):
     utils.clear_console()
 
     choices = {
@@ -49,7 +50,7 @@ def vault_loop(session):
             choices[choice]()
 
 
-def open_vault(session):
+def open_vault(session: Session):
     if not session.is_unlocked():
 
         password = ask_password()
@@ -61,8 +62,8 @@ def open_vault(session):
     utils.setting_window_name("VaultoPASS - Vault")
     vault_loop(session)
 
-def update_vault(session, data):
+def update_vault(session: Session, data):
     print("Updating vault data...")
 
-def close_vault(session):
+def close_vault(session: Session):
     session.lock()

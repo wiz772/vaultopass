@@ -2,7 +2,7 @@ from utils import utils
 from vault import vault
 from core import settings
 from core import setup
-from core import session
+from core.session import Session
 from utils import config as config_handler
 
 def show_main_choice():
@@ -19,7 +19,7 @@ def main_menu_visuals():
     utils.setting_window_name("VaultoPASS - Menu")
     utils.show_credits()
 
-def handle_choice(session):
+def handle_choice(session: Session):
     choices = {
         "1": lambda: vault.open_vault(session),
         "2": settings.show_settings_menu,
@@ -38,10 +38,10 @@ def handle_choice(session):
 
 def get_session():
     config = config_handler.load_config()
-    current_session = session.Session(config["timeout"])
+    current_session = Session(config["timeout"])
     return current_session
 
-def start(current_session):
+def start(current_session: Session):
     handle_choice(current_session)
 
 def main(): 
