@@ -21,7 +21,7 @@ VaultoPass is a simple simple CLI password manager written in Python.
 ## Installation
 
 ```bash
-git clone https://github.com/...
+git clone https://github.com/wiz772/vaultopass.git
 cd vaultopass
 pip install -r requirements.txt
 ```
