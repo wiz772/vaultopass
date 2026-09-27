@@ -1,6 +1,7 @@
 # VaultoPass
 
 VaultoPass is a simple simple CLI password manager written in Python.
+
 ![VaultoPass screenshot](assets/preview.png)
 
 ---
