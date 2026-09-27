@@ -10,3 +10,4 @@ Settings:
 Timeout session (minutes): {timeout}
 
 """)
+    input("Press Enter to continue...")
